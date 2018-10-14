@@ -1,0 +1,76 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block styles %}
+<style>
+    .jumbotron {
+      text-align: center;
+      background-image: url(‘img/jumbotron.jpg’);
+      background-size: cover;
+      background-repeat: no-repeat;
+}
+  </style>
+{% endblock %}
+
+{% block jumbotron %}
+
+</head>
+<body>
+  <h1>Mimo's Closet</h1>
+  <h5>ONLINE BOUTIQUE</h5>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Mimo's Closet</h1>      
+    <p>Add a background image.</p>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+          <div class="col-md-4">
+            <a href="#"> <img src="{% static 'img/basic1.jpg' %}" class="img-responsive"/></a>
+          </div>
+          <div class="col-md-4">
+            <a href="#"> <img src="{% static 'img/onepiece2.jpg' %}" class="img-responsive"/></a>
+          </div>
+           <div class="col-md-4">
+            {% if request.user.is_authenticated %}
+            <h1> Hello {{ request.user }}</h1>
+
+            {% else %}
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <p><label for="id_login">Login:</label> <input name="login" placeholder="Username or e-mail" autofocus="autofocus" required="" id="id_login" type="text"></p>
+                <p><label for="id_password">Password:</label> <input name="password" placeholder="Password" required="" id="id_password" type="password"></p>
+                <p><label for="id_remember">Remember Me:</label> <input name="remember" id="id_remember" type="checkbox"></p>
+  
+                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?
+                </a>
+                <a class="button secondaryAction" href="{% url 'account_signup' %}">Sign Up</a>
+                <button class="primaryAction" type="submit">Sign In</button>
+            </form>
+            {% endif %}
+          </div>
+</div>
+
+<div class="row">
+          <div class="col-md-6">
+            <a href="#"> <img src="{% static 'img/basic7.jpg' %}" class="img-responsive"/></a>
+          </div>
+          <div class="col-md-6">
+          <a href="#"> <img src=" {% static 'img/top2.jpg' %}" class="img-responsive"/></a>
+          </div>
+</div>
+
+<div class="row">
+          <div class="col-md-4">
+            <a href="#"> <img src="{% static 'img/basic5.jpg' %}" class="img-responsive"/></a>
+          </div>
+          <div class="col-md-4">
+            <a href="#"> <img src="{% static 'img/basic6.jpg' %}" class="img-responsive"/></a>
+          </div>
+              <div class="col-md-4">
+                <a href="#"> <img src="{% static 'img/basic8.jpg' %}" class="img-responsive"/></a>
+          </div>
+</div>
+{% endblock %}
