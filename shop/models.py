@@ -30,6 +30,13 @@ from django.db import models
 from django.urls import reverse
 
 
+class Profile(models.Model):
+    name = models.CharField(max_length=150, db_index = True)
+    description =  models.TextField(default = "description default text")
+    created_at = models.DateTimeField(auto_now_add = True)
+    def __str__(self):
+        return self.name
+
 class Category(models.Model):
     name = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True ,db_index=True)
