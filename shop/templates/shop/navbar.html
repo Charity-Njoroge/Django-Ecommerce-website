@@ -1,28 +1,41 @@
 {% load static %}
 <div id="navbar" class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
-  <a class="navbar-brand">Mimo's Closet</a>
+  <!-- Just an image -->
+     <a class="navbar-brand" href="{% url 'shop:home' %}"> <img src="{% static 'img/logo.png' %}" width="mr-auto" height="mr-auto" alt=""></a>
           <ul class="nav navbar-nav mr-auto">
             {% url 'shop:home' as home %}
             {% url 'shop:product_list' as product_list %} 
             {% url 'contact:contact' as contact %} 
-            <li {% if request.path == home %} class="nav-item active" {% endif %}>
+            <li class="dropdown dropdown-large" {% if request.path == home %} class="nav-item active" {% endif %}>
              <a href="{% url 'shop:home' %}">Home</a></li>
-            <li {% if request.path == product_list %} class="nav-item active" {% endif %}> <a href="{% url 'shop:product_list' %}"> Clothing </a></li>
-            <li {% if request.path == contact %} class="nav-item active" {% endif %}><a href="{% url 'contact:contact' %}">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-              <li><a href="#">All</a></li>
-              <li><a href="#">Dresses</a></li>
-              <li><a href="#">Bottoms</a></li>
-              <li><a href="#">Basics</a></li>
-              <li><a href="#">Outwear</a></li>
-              <li><a href="#">One Piece</a></li>
-                <li><a href="#">Athleisure</a></li>
-                <li><a href="#">Swim Wear</a></li>
+            <li {% if request.path == product_list %} class="nav-item active" {% endif %} class="dropdown dropdown-large" > <a href="{% url 'shop:product_list' %}" class="dropdown-toggle" data-toggle="dropdown"> Collection <b class="caret"></b></a>
+              <ul class="dropdown-menu" aria-label="submenu">
+              <li><a href="/product_list/">All</a></li>
+              <li><a href="/dresses/">Dresses</a></li>
+              <li><a href="/bottoms/">Bottoms</a></li>
+              <li><a href="/basic/">Basics</a></li>
+              <li><a href="/outwear/">Outwear</a></li>
+              <li><a href="/onepiece/">One Piece</a></li>
+              <li><a href="/athleisure/">Athleisure</a></li>
+              <li><a href="/swimwear/">Swim Wear</a></li>
+              <li><a href="/tops/">Tops</a></li>
+            </ul>
+            </li>
+            <li {% if request.path == contact %} class="nav-item active" {% endif %}><a href="{% url 'contact:contact' %}" aria-haspopup="true">Contact</a></li>
+            <li {% if request.path == product_list %} class="nav-item active" {% endif %}> <a href="{% url 'shop:product_list' %}"> Categories <span class="caret"></span></a>
+             <ul class="dropdown-menu" aria-label="submenu">
+              <li ><a href="/product_list/">All</a></li>
+              <li><a href="/dresses/">Dresses</a></li>
+              <li><a href="/bottoms/">Bottoms</a></li>
+              <li><a href="/basic/">Basics</a></li>
+              <li><a href="/outwear/">Outwear</a></li>
+              <li><a href="/onepiece/">One Piece</a></li>
+              <li><a href="/athleisure/">Athleisure</a></li>
+              <li><a href="/swimwear/">Swim Wear</a></li>
+              <li><a href="/tops/">Tops</a></li>
               </ul>
             </li>
-          </ul>
+            </ul>
           <ul class="nav navbar-nav navbar-right">
              {% if not request.user.is_authenticated %}
             <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
@@ -32,6 +45,3 @@
             {% endif %}
           </ul>
         </div>
-
-
-
